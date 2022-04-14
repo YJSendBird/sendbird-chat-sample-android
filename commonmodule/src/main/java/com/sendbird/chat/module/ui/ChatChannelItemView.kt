@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import com.sendbird.chat.module.R
 import com.sendbird.chat.module.databinding.ViewChatChannelItemBinding
 
@@ -48,10 +49,10 @@ class ChatChannelItemView : FrameLayout {
         typedArray.recycle()
     }
 
-    fun setText(title: String, contents: String) {
+    fun setText(title: String, contents: String, isFrozen: Boolean = false) {
         binding.textviewTitle.text = title
         binding.textviewLastMessage.text = contents
-
+        binding.freezeIcon.isVisible = isFrozen
     }
 
 }

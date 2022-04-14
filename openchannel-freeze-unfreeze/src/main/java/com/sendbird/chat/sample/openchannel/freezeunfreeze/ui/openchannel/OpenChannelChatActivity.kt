@@ -161,9 +161,19 @@ class OpenChannelChatActivity : AppCompatActivity() {
                     return@enter
                 }
                 currentOpenChannel = openChannel
+                if (openChannel.isFrozen) {
+                    binding.toolbar.title = "$channelTitle (Frozen)"
+                    checkIfUserIsOperator()
+                }
                 loadMessagesPreviousMessages(Long.MAX_VALUE)
             }
         }
+    }
+
+    private fun checkIfUserIsOperator() {
+        val operators = currentOpenChannel?.operators ?: return
+        val currentUser = SendbirdChat.currentUser ?: return
+        binding.chatInputView.isEnabled = operators.contains(currentUser)
     }
 
     private fun addHandler() {

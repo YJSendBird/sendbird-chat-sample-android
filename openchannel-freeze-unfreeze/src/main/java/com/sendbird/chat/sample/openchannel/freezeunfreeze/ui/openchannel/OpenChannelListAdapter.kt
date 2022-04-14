@@ -80,7 +80,8 @@ class OpenChannelListAdapter(private val listener: OnItemClickListener) :
         fun bind(openChannel: OpenChannel) {
             binding.chatChannelListItemView.setText(
                 openChannel.name,
-                "Participant: ${openChannel.participantCount}"
+                "Participant: ${openChannel.participantCount}",
+                isFrozen = openChannel.isFrozen
             )
         }
     }
